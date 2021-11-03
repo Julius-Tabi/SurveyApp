@@ -81,7 +81,7 @@ export class ThirdScreenPage implements OnInit {
         this.surveys.sort();
         this.Total_surveys = this.surveys.length;
         console.log('Total No of surveys',this.Total_surveys);
-        console.log('nonesense',this.surveys);
+        console.log('Survey data',this.surveys);
       });
     });
     //oldest

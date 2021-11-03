@@ -1,0 +1,7 @@
+{
+  "name": "SurveyApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

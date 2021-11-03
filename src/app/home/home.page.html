@@ -1,20 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content [fullscreen]="true" class="content">
+      
+        <div id="take" class="ion-align-items-center">
+         <ion-button id="takesurvey" class="ion-text-wrap" style="max-width: 75%;" [routerLink]="'/second-screen'">
+           Fill out Survey
+         </ion-button>
+        </div>
+     
+        <div id="fill" class="ion-align-items-center">
+          <ion-button id="Results" color="secondary" class="ion-text-wrap" style="max-width: 75%;" [routerLink]="'/third-screen'">
+            View Survey Results
+          </ion-button>
+         </div>
+        
 </ion-content>

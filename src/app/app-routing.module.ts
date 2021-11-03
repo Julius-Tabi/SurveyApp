@@ -11,6 +11,15 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+ 
+  {
+    path: 'second-screen',
+    loadChildren: () => import('./second-screen/second-screen.module').then( m => m.SecondScreenPageModule)
+  },
+  {
+    path: 'third-screen',
+    loadChildren: () => import('./third-screen/third-screen.module').then( m => m.ThirdScreenPageModule)
+  },
 ];
 
 @NgModule({

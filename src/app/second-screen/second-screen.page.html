@@ -1,0 +1,301 @@
+
+<ion-card-header style="background-color: whitesmoke;">
+  <ion-card-title style="font-size: x-large; font-style: oblique; color: #071a52; font-weight: bold; text-align: center; text-transform: uppercase; text-decoration: wavy;"> Take our Survey </ion-card-title>
+</ion-card-header>
+
+<ion-content id="content">
+  <ion-card class="ion-align-items-center">
+    <ion-card-content id="card-content">
+      <ion-card-subtitle style="text-align: left; font-size:medium; color: #086972;">Personal Details</ion-card-subtitle>
+      <form [formGroup]="RegForm" (ngSubmit)="submit()">
+        <div id="personal_details">
+          <ion-item style="margin-top: 15px;" lines="none" >
+            <!-- <ion-item> -->
+            <ion-label position="stacked" style="margin-bottom: 10px; font-size: large;">Last name</ion-label>
+            <ion-input
+              autocapitalize
+              type="text"
+              formControlName="lastname"
+              placeholder=" Type your lastname..."
+             max="100"
+            >
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.lastname">
+            <ng-container 
+              *ngIf="lastname.hasError(error.type) && (lastname.dirty || lastname.touched)"
+            >
+              <small style="font-size: small;" class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+
+          <ion-item style="margin-top: 10px;" lines="none">
+            <ion-label position="stacked" style="margin-bottom: 10px; font-size: large;">First names</ion-label>
+            <ion-input
+              autocapitalize
+              type="text"
+              formControlName="name"
+              placeholder=" Type your name..." max="100"
+            >
+              <!-- <ion-icon name="person-outline" ></ion-icon> -->
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.name">
+            <ng-container
+              *ngIf="name.hasError(error.type) && (name.dirty || name.touched)"
+            >
+              <small style="font-size: small;" class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item style="margin-top: 10px;" lines="none">
+            <ion-label position="stacked" style="margin-bottom: 10px; font-size: large;">Contact number</ion-label>
+            <ion-input
+              type="tel"
+              formControlName="phone"
+              placeholder=" Type your contact No..."
+             min="10" max="10"
+            >
+              <!-- <ion-icon name="call-outline" ></ion-icon> -->
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.phone">
+            <ng-container
+              *ngIf="phone.hasError(error.type) && (phone.dirty || phone.touched)"
+            >
+              <small style="font-size: small;" class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item style="margin-top: 10px;" lines="none">
+            <ion-label position="stacked" style="margin-bottom: 10px; font-size: large;">Age</ion-label>
+            <ion-input
+              type="number"
+              formControlName="age"
+              placeholder=" Type your age..."
+             [(ngModel)]="Age"
+              min="1" max="3"
+            >
+              <!-- <ion-icon name="call-outline" ></ion-icon> -->
+            </ion-input>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.age">
+            <ng-container
+              *ngIf="age.hasError(error.type) && (age.dirty || age.touched)"
+            >
+              <small style="font-size: small;" class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+          <ion-item style="margin-top: 10px;" lines="none" >
+          
+                <ion-label position="stacked" style="margin-bottom: 10px; font-size: large;">Date</ion-label>
+                <ion-datetime (click)="disableDate()" name="date" picker-format="DD-MM-YYYY" formControlName="date" placeholder="Date">
+                  <ion-icon style="color: red;" slot="start" name="calendar-number-outline"></ion-icon>
+              </ion-datetime>
+          </ion-item>
+          <div *ngFor="let error of errorMessages.date">
+            <ng-container
+              *ngIf="date.hasError(error.type) && (date.dirty || date.touched)"
+            >
+              <small style="font-size: small;" class="error-message">{{error.message}}</small>
+            </ng-container>
+          </div>
+        </div>
+        <!-- <div class="sign-btn-wrap">
+          <ion-button
+            shape="round"
+            size="medium"
+            [disabled]="!RegForm.valid"
+            type="submit"
+            style="width: 60%"
+            >Create Account
+            <ion-icon slot="end" name="create"> </ion-icon>
+          </ion-button>
+        </div> -->
+
+<ion-card-subtitle style="text-align: left; margin-top: 20px; font-size: medium; color:#086972;">What is your favourite food?(You can choose more than one answer)</ion-card-subtitle>
+     
+        <ion-list>
+          <ion-item *ngFor="let Ingredients of Ingredients" (click)="onClick(Ingredients)" lines="none" >
+            <ion-label>{{Ingredients.name}}</ion-label>
+            <ion-checkbox  slot="start" formControlName="ingredients"  style="border:1px solid #10682a;display:block;background:#10682a;"  [(ngModel)]="Ingredients.isChecked" (change)="onChange(Ingredients.name, $event.target.checked)" ></ion-checkbox>
+          </ion-item>
+        
+        </ion-list>
+        <div *ngFor="let error of errorMessages.ingredients">
+          <ng-container
+            *ngIf="ingredients.hasError(error.type) && (ingredients.dirty || ingredients.touched)"
+          >
+            <small style="font-size: small;" class="error-message">{{error.message}}</small>
+          </ng-container>
+        </div>
+        <ion-card-subtitle style="text-align: left; font-size: medium; color: #086972;">On a scale of 1 to 5 indicate whether you strongly agree to strongly disagree</ion-card-subtitle>
+        <ion-grid>
+          <ion-row id="top" style="background-color:#10682a; color: white;">
+            <ion-col >
+             
+            </ion-col>
+            <ion-col style="color: white;" >
+             Strongly Agree
+                 (1)
+            </ion-col>
+            <ion-col style="color: white;">
+              Agree
+               (2)
+            </ion-col>
+            <ion-col style="color: white;">
+              Neutral
+                (3)
+            </ion-col>
+            <ion-col style="color: white;">
+              Disagree
+                (4)
+            </ion-col>
+            <ion-col style="color: white;">
+              Strongly Disagree
+                    (5)
+            </ion-col>
+          </ion-row>
+          <ion-radio-group  formControlName="eatout" [(ngModel)]="eatout.isChecked">
+          <ion-row id="eatout">
+           
+            <ion-col >
+             I like to eat out
+            </ion-col>
+           
+            <ion-col >             
+                 <ion-radio type="number" isChecked="false"  color="success" value="1" ></ion-radio>
+            </ion-col>
+           
+            <ion-col >
+              <!-- <ion-radio-group value="one"> -->
+                <ion-radio type="number" isChecked="false" color="primary" value="2"></ion-radio>
+              <!-- </ion-radio-group> -->
+            </ion-col>
+            <ion-col >
+              <!-- <ion-radio-group value="one"> -->
+                <ion-radio isChecked="false"  color="secondary" value="3"></ion-radio>
+              <!-- </ion-radio-group> -->
+            </ion-col>
+            <ion-col >
+              <!-- <ion-radio-group value="one"> -->
+                <ion-radio  isChecked="false" color="tertiary" value="4"></ion-radio>
+              <!-- </ion-radio-group> -->
+            </ion-col>
+            <ion-col>
+              <!-- <ion-radio-group value="one"> -->
+                <ion-radio  isChecked="false" color="danger" value="5"></ion-radio>
+              <!-- </ion-radio-group> -->
+            </ion-col>
+          
+          </ion-row>
+          
+        </ion-radio-group>
+        <ion-radio-group formControlName="movies" [(ngModel)]="movies.isChecked">
+          <ion-row>
+            <ion-col >
+             I like to watch movies
+            </ion-col>
+            <ion-col >
+              
+              <ion-radio isChecked="false"  color="success" value="1"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="primary" value="2"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="secondary" value="3"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="tertiary" value="4"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col>
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="danger" value="5"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          </ion-row>
+          
+        </ion-radio-group>
+        <ion-radio-group formControlName="tv" [(ngModel)]="tv.isChecked">
+          <ion-row>
+            <ion-col >
+              I like to watch TV
+            </ion-col>
+            <ion-col >
+              
+              <ion-radio isChecked="false"  color="success" value="1"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="primary" value="2"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="secondary" value="3"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="tertiary" value="4"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col>
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="danger" value="5"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          </ion-row>
+          
+        </ion-radio-group>
+        <ion-radio-group formControlName="radio" [(ngModel)]="radio.isChecked">
+          <ion-row>
+            <ion-col >
+             I like to listen to the radio
+            </ion-col>
+            <ion-col >
+              
+              <ion-radio isChecked="false"  color="success" value="1"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="primary" value="2"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="secondary" value="3"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col >
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="tertiary" value="4"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          <ion-col>
+            <!-- <ion-radio-group value="one"> -->
+              <ion-radio isChecked="false"  color="danger" value="5"></ion-radio>
+            <!-- </ion-radio-group> -->
+          </ion-col>
+          </ion-row>
+          
+        </ion-radio-group>
+        </ion-grid>
+        <div class="bottom-section" style="margin-top:20px;">
+          <ion-button   type="submit" style="width: 50%;" [disabled]="!RegForm.valid" >Submit
+              <!-- <ion-icon slot="end" name="create">
+              </ion-icon> -->
+          </ion-button>
+      </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

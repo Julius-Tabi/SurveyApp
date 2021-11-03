@@ -25,3 +25,50 @@
 #container a {
   text-decoration: none;
 }
+.content {
+  width: 100%;
+  // height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  align-self: center;
+}
+#takesurvey {
+  height: 100px;
+  width: 50%;
+  text-align: center;
+}
+#Results {
+  height: 100px;
+  width: 50%;
+  text-align: center;
+}
+#take{
+  padding-top: 32.5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  align-self: center;
+  box-shadow: 7px 7px 25px solid;
+}
+#fill{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  align-self: center;
+  padding-bottom: 32.5vh;
+  box-shadow: 7px 7px 25px solid;
+}
